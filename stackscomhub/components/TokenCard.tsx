@@ -4,12 +4,15 @@ import { Token } from "@/lib/mock-data";
 import Link from "next/link";
 import { TrendingUp, TrendingDown, Users } from "lucide-react";
 
+let sparklineIdCounter = 0;
+
 function MiniSparkline({ data, color }: { data: number[]; color: string }) {
     const min = Math.min(...data);
     const max = Math.max(...data);
     const range = max - min || 1;
     const w = 80;
     const h = 32;
+    const gradId = `spark-grad-${sparklineIdCounter++}`;
 
     const points = data
         .map((v, i) => {
@@ -22,14 +25,14 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
     return (
         <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="flex-shrink-0">
             <defs>
-                <linearGradient id={`grad-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor={color} stopOpacity="0.3" />
                     <stop offset="100%" stopColor={color} stopOpacity="0" />
                 </linearGradient>
             </defs>
             <polygon
                 points={`0,${h} ${points} ${w},${h}`}
-                fill={`url(#grad-${color.replace("#", "")})`}
+                fill={`url(#${gradId})`}
             />
             <polyline
                 points={points}
@@ -69,8 +72,8 @@ export default function TokenCard({ token }: { token: Token }) {
                     </div>
                     <div
                         className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${isPositive
-                                ? "bg-green-50 text-[var(--color-green)]"
-                                : "bg-red-50 text-[var(--color-red)]"
+                            ? "bg-green-50 text-[var(--color-green)]"
+                            : "bg-red-50 text-[var(--color-red)]"
                             }`}
                     >
                         {isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
