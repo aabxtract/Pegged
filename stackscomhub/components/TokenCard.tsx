@@ -26,7 +26,7 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
         <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="flex-shrink-0">
             <defs>
                 <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+                    <stop offset="0%" stopColor={color} stopOpacity="0.4" />
                     <stop offset="100%" stopColor={color} stopOpacity="0" />
                 </linearGradient>
             </defs>
@@ -51,13 +51,24 @@ export default function TokenCard({ token }: { token: Token }) {
 
     return (
         <Link href={`/token/${token.id}`}>
-            <div className="group relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white p-5 transition-all duration-300 hover:border-[var(--color-purple)]/30 hover:shadow-lg hover:shadow-purple-100 hover:-translate-y-1">
+            <div className="group relative overflow-hidden rounded-2xl glass-card p-5">
+                {/* Ambient glow on hover */}
+                <div
+                    className="absolute -inset-1 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none blur-xl"
+                    style={{
+                        background: `radial-gradient(circle at 50% 50%, ${token.color}20, transparent 70%)`,
+                    }}
+                />
+
                 {/* Top row: icon + ticker + change */}
-                <div className="flex items-start justify-between mb-3">
+                <div className="relative flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                         <div
-                            className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold text-sm"
-                            style={{ backgroundColor: token.color }}
+                            className="flex h-10 w-10 items-center justify-center rounded-xl text-white font-bold text-sm shadow-lg"
+                            style={{
+                                backgroundColor: token.color,
+                                boxShadow: `0 4px 12px -2px ${token.color}40`,
+                            }}
                         >
                             {token.ticker.charAt(0)}
                         </div>
@@ -71,9 +82,9 @@ export default function TokenCard({ token }: { token: Token }) {
                         </div>
                     </div>
                     <div
-                        className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${isPositive
-                            ? "bg-green-50 text-[var(--color-green)]"
-                            : "bg-red-50 text-[var(--color-red)]"
+                        className={`flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ${isPositive
+                                ? "bg-[var(--color-green-dim)] text-[var(--color-green)]"
+                                : "bg-[var(--color-red-dim)] text-[var(--color-red)]"
                             }`}
                     >
                         {isPositive ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
@@ -83,9 +94,12 @@ export default function TokenCard({ token }: { token: Token }) {
                 </div>
 
                 {/* Price + chart */}
-                <div className="flex items-end justify-between mb-3">
+                <div className="relative flex items-end justify-between mb-3">
                     <div>
-                        <p className="text-lg font-bold text-[var(--color-text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
+                        <p
+                            className="text-lg font-bold text-[var(--color-text-primary)]"
+                            style={{ fontFamily: "var(--font-heading)" }}
+                        >
                             ${token.price.toFixed(4)}
                         </p>
                     </div>
@@ -96,20 +110,13 @@ export default function TokenCard({ token }: { token: Token }) {
                 </div>
 
                 {/* Bottom: holders + mcap */}
-                <div className="flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
-                    <div className="flex items-center gap-1">
+                <div className="relative flex items-center justify-between text-xs text-[var(--color-text-secondary)]">
+                    <div className="flex items-center gap-1.5">
                         <Users size={12} />
                         {token.holders.toLocaleString()} holders
                     </div>
-                    <span>MCap ${(token.marketCap / 1000).toFixed(0)}K</span>
+                    <span className="text-[var(--color-text-tertiary)]">MCap ${(token.marketCap / 1000).toFixed(0)}K</span>
                 </div>
-
-                {/* Hover glow */}
-                <div className="absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"
-                    style={{
-                        background: `linear-gradient(135deg, ${token.color}10, transparent, ${token.color}08)`,
-                    }}
-                />
             </div>
         </Link>
     );

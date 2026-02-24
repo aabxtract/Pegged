@@ -19,7 +19,6 @@ import Link from "next/link";
 import { use } from "react";
 
 function PriceChart() {
-    // SVG candlestick chart
     const candles = [
         { o: 60, h: 75, l: 55, c: 70 },
         { o: 70, h: 80, l: 65, c: 62 },
@@ -52,14 +51,14 @@ function PriceChart() {
                             y1={y}
                             x2={w - padding}
                             y2={y}
-                            stroke="#F3F0FF"
+                            stroke="rgba(139,92,246,0.08)"
                             strokeWidth="1"
                         />
                         <text
                             x={w - padding + 5}
                             y={y + 4}
                             fontSize="9"
-                            fill="#94A3B8"
+                            fill="#5A5A78"
                         >
                             ${(0.005 - i * 0.001).toFixed(3)}
                         </text>
@@ -71,14 +70,13 @@ function PriceChart() {
             {candles.map((c, i) => {
                 const x = padding + i * candleW + candleW / 2;
                 const green = c.c >= c.o;
-                const color = green ? "#22C55E" : "#EF4444";
+                const color = green ? "#34D399" : "#F87171";
                 const bodyTop = Math.min(c.o, c.c);
                 const bodyBot = Math.max(c.o, c.c);
                 const scale = (h - padding * 2) / 60;
 
                 return (
                     <g key={i}>
-                        {/* Wick */}
                         <line
                             x1={x}
                             y1={h - padding - (c.h - 50) * scale}
@@ -87,7 +85,6 @@ function PriceChart() {
                             stroke={color}
                             strokeWidth="1.5"
                         />
-                        {/* Body */}
                         <rect
                             x={x - candleW * 0.3}
                             y={h - padding - (bodyBot - 50) * scale}
@@ -113,8 +110,8 @@ function PriceChart() {
                         width={candleW * 0.5}
                         height={vol}
                         rx="1"
-                        fill={green ? "#22C55E" : "#EF4444"}
-                        opacity="0.2"
+                        fill={green ? "#34D399" : "#F87171"}
+                        opacity="0.15"
                     />
                 );
             })}
@@ -132,7 +129,7 @@ export default function TokenDetailPage({
     const isPositive = token.change24h >= 0;
 
     return (
-        <div className="min-h-screen bg-[var(--color-bg-secondary)]">
+        <div className="min-h-screen bg-[var(--background)]">
             <Navbar />
 
             <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -149,12 +146,15 @@ export default function TokenDetailPage({
                     {/* ====== LEFT: Chart + Feed ====== */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Token header */}
-                        <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6">
+                        <div className="glass-card rounded-2xl p-6">
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <div className="flex items-center gap-3">
                                     <div
-                                        className="flex h-12 w-12 items-center justify-center rounded-xl text-white font-bold text-lg"
-                                        style={{ backgroundColor: token.color }}
+                                        className="flex h-12 w-12 items-center justify-center rounded-xl text-white font-bold text-lg shadow-lg"
+                                        style={{
+                                            backgroundColor: token.color,
+                                            boxShadow: `0 4px 16px -2px ${token.color}40`,
+                                        }}
                                     >
                                         {token.ticker.charAt(0)}
                                     </div>
@@ -166,7 +166,7 @@ export default function TokenDetailPage({
                                             >
                                                 {token.name}
                                             </h1>
-                                            <span className="text-sm text-[var(--color-text-secondary)]">
+                                            <span className="text-sm text-[var(--color-text-tertiary)]">
                                                 ${token.ticker}
                                             </span>
                                         </div>
@@ -183,9 +183,9 @@ export default function TokenDetailPage({
                                         ${token.price.toFixed(4)}
                                     </p>
                                     <div
-                                        className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${isPositive
-                                                ? "bg-green-50 text-[var(--color-green)]"
-                                                : "bg-red-50 text-[var(--color-red)]"
+                                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold ${isPositive
+                                                ? "bg-[var(--color-green-dim)] text-[var(--color-green)]"
+                                                : "bg-[var(--color-red-dim)] text-[var(--color-red)]"
                                             }`}
                                     >
                                         {isPositive ? (
@@ -201,7 +201,7 @@ export default function TokenDetailPage({
                         </div>
 
                         {/* Chart */}
-                        <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6">
+                        <div className="glass-card rounded-2xl p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-sm font-semibold text-[var(--color-text-primary)]">
                                     Price Chart
@@ -210,7 +210,7 @@ export default function TokenDetailPage({
                                     {["1H", "4H", "1D", "1W", "1M"].map((t, i) => (
                                         <button
                                             key={t}
-                                            className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-all ${i === 2
+                                            className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-all duration-300 ${i === 2
                                                     ? "bg-[var(--color-purple)] text-white"
                                                     : "text-[var(--color-text-secondary)] hover:bg-[var(--color-purple-light)] hover:text-[var(--color-purple)]"
                                                 }`}
@@ -224,7 +224,7 @@ export default function TokenDetailPage({
                         </div>
 
                         {/* Community Feed */}
-                        <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6">
+                        <div className="glass-card rounded-2xl p-6">
                             <div className="flex items-center justify-between mb-6">
                                 <h2
                                     className="text-sm font-semibold text-[var(--color-text-primary)]"
@@ -236,7 +236,7 @@ export default function TokenDetailPage({
                                     {["Feed", "Holders", "Txns"].map((tab, i) => (
                                         <button
                                             key={tab}
-                                            className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${i === 0
+                                            className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-300 ${i === 0
                                                     ? "bg-[var(--color-purple-light)] text-[var(--color-purple)]"
                                                     : "text-[var(--color-text-secondary)] hover:text-[var(--color-purple)]"
                                                 }`}
@@ -251,7 +251,7 @@ export default function TokenDetailPage({
                                 {feedPosts.map((post) => (
                                     <div
                                         key={post.id}
-                                        className="rounded-xl border border-[var(--color-border)] p-4 transition-colors hover:bg-[var(--color-bg-secondary)]"
+                                        className="rounded-xl border border-[var(--color-border)] p-4 transition-all duration-300 hover:bg-white/[0.02] hover:border-[var(--color-border-hover)]"
                                     >
                                         <div className="flex items-start gap-3">
                                             <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-purple-light)] text-xs font-bold text-[var(--color-purple)]">
@@ -268,23 +268,23 @@ export default function TokenDetailPage({
                                                             Gated
                                                         </span>
                                                     )}
-                                                    <span className="text-xs text-[var(--color-text-secondary)]">
+                                                    <span className="text-xs text-[var(--color-text-tertiary)]">
                                                         {post.timestamp}
                                                     </span>
                                                 </div>
-                                                <p className="text-sm text-[var(--color-text-primary)] leading-relaxed">
+                                                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
                                                     {post.content}
                                                 </p>
                                                 <div className="flex items-center gap-4 mt-3">
-                                                    <button className="flex items-center gap-1 text-xs text-[var(--color-text-secondary)] hover:text-[var(--color-red)] transition-colors">
+                                                    <button className="flex items-center gap-1 text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-red)] transition-colors">
                                                         <Heart size={14} />
                                                         {post.likes}
                                                     </button>
-                                                    <button className="flex items-center gap-1 text-xs text-[var(--color-text-secondary)] hover:text-[var(--color-purple)] transition-colors">
+                                                    <button className="flex items-center gap-1 text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-purple)] transition-colors">
                                                         <MessageCircle size={14} />
                                                         {post.comments}
                                                     </button>
-                                                    <button className="flex items-center gap-1 text-xs text-[var(--color-text-secondary)] hover:text-[var(--color-cyan)] transition-colors">
+                                                    <button className="flex items-center gap-1 text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-cyan)] transition-colors">
                                                         <Share2 size={14} />
                                                         Share
                                                     </button>
@@ -300,7 +300,7 @@ export default function TokenDetailPage({
                     {/* ====== RIGHT: Trade Panel + Stats ====== */}
                     <div className="space-y-6">
                         {/* Trade panel */}
-                        <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 sticky top-20">
+                        <div className="glass-card rounded-2xl p-6 sticky top-20">
                             <h2
                                 className="text-sm font-semibold text-[var(--color-text-primary)] mb-4"
                                 style={{ fontFamily: "var(--font-heading)" }}
@@ -309,8 +309,8 @@ export default function TokenDetailPage({
                             </h2>
 
                             {/* Buy/Sell toggle */}
-                            <div className="flex rounded-xl bg-[var(--color-bg-secondary)] p-1 mb-5">
-                                <button className="flex-1 rounded-lg bg-[var(--color-green)] py-2 text-sm font-semibold text-white transition-all">
+                            <div className="flex rounded-xl bg-white/[0.03] border border-[var(--color-border)] p-1 mb-5">
+                                <button className="flex-1 rounded-lg bg-[var(--color-green)] py-2 text-sm font-semibold text-white transition-all shadow-lg shadow-emerald-500/20">
                                     Buy
                                 </button>
                                 <button className="flex-1 rounded-lg py-2 text-sm font-medium text-[var(--color-text-secondary)] transition-all hover:text-[var(--color-text-primary)]">
@@ -328,16 +328,16 @@ export default function TokenDetailPage({
                                     <input
                                         type="number"
                                         placeholder="0.00"
-                                        className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:border-[var(--color-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--color-purple)]/20 transition-all"
+                                        className="input-field w-full px-4 py-3 text-sm"
                                     />
-                                    <button className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md bg-[var(--color-purple-light)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-purple)]">
+                                    <button className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md bg-[var(--color-purple-light)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-purple)] hover:bg-[var(--color-purple)] hover:text-white transition-all">
                                         MAX
                                     </button>
                                 </div>
                             </div>
 
                             {/* You receive */}
-                            <div className="mb-5 rounded-xl bg-[var(--color-bg-secondary)] p-4">
+                            <div className="mb-5 rounded-xl bg-white/[0.03] border border-[var(--color-border)] p-4">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-xs text-[var(--color-text-secondary)]">
                                         You receive
@@ -365,13 +365,13 @@ export default function TokenDetailPage({
                             </div>
 
                             {/* Buy button */}
-                            <button className="w-full rounded-xl bg-[var(--color-green)] py-3.5 text-sm font-semibold text-white shadow-lg shadow-green-100 transition-all hover:bg-green-600 active:scale-[0.98]">
+                            <button className="w-full rounded-xl bg-[var(--color-green)] py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-500/30 hover:brightness-110 active:scale-[0.98]">
                                 Buy ${token.ticker}
                             </button>
                         </div>
 
                         {/* Token stats */}
-                        <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6">
+                        <div className="glass-card rounded-2xl p-6">
                             <h3
                                 className="text-sm font-semibold text-[var(--color-text-primary)] mb-4"
                                 style={{ fontFamily: "var(--font-heading)" }}
@@ -379,45 +379,25 @@ export default function TokenDetailPage({
                                 Token Stats
                             </h3>
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-                                        <Coins size={14} />
-                                        Market Cap
+                                {[
+                                    { icon: Coins, label: "Market Cap", value: `$${(token.marketCap / 1000).toFixed(0)}K` },
+                                    { icon: Users, label: "Holders", value: token.holders.toLocaleString() },
+                                    { icon: BarChart3, label: "24h Volume", value: `$${(token.volume24h / 1000).toFixed(0)}K` },
+                                    { icon: Coins, label: "Total Supply", value: `${(token.totalSupply / 1000000).toFixed(0)}M` },
+                                ].map((stat, i) => (
+                                    <div key={stat.label}>
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
+                                                <stat.icon size={14} />
+                                                {stat.label}
+                                            </div>
+                                            <span className="text-sm font-semibold text-[var(--color-text-primary)]">
+                                                {stat.value}
+                                            </span>
+                                        </div>
+                                        {i < 3 && <div className="divider mt-3" />}
                                     </div>
-                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
-                                        ${(token.marketCap / 1000).toFixed(0)}K
-                                    </span>
-                                </div>
-                                <div className="h-px bg-[var(--color-border)]" />
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-                                        <Users size={14} />
-                                        Holders
-                                    </div>
-                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
-                                        {token.holders.toLocaleString()}
-                                    </span>
-                                </div>
-                                <div className="h-px bg-[var(--color-border)]" />
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-                                        <BarChart3 size={14} />
-                                        24h Volume
-                                    </div>
-                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
-                                        ${(token.volume24h / 1000).toFixed(0)}K
-                                    </span>
-                                </div>
-                                <div className="h-px bg-[var(--color-border)]" />
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-                                        <Coins size={14} />
-                                        Total Supply
-                                    </div>
-                                    <span className="text-sm font-semibold text-[var(--color-text-primary)]">
-                                        {(token.totalSupply / 1000000).toFixed(0)}M
-                                    </span>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>

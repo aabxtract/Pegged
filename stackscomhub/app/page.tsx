@@ -15,31 +15,42 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[var(--background)]">
       <Navbar />
 
       {/* ====== HERO SECTION ====== */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <div className="rounded-3xl bg-[var(--color-purple)] px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+        {/* Background orbs */}
+        <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.15)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-            <div className="relative flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+          <div className="rounded-3xl bg-gradient-to-br from-[#1E1B4B] via-[#12122B] to-[#0F0A2A] px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 relative overflow-hidden border border-[rgba(139,92,246,0.15)]">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.12)_0%,transparent_70%)] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.06)_0%,transparent_70%)] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+            {/* Grid pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: `linear-gradient(rgba(139,92,246,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.5) 1px, transparent 1px)`,
+              backgroundSize: '60px 60px',
+            }} />
+
+            <div className="relative flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-between">
               {/* Left: text */}
               <div className="max-w-xl text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white mb-6">
-                  <SiBitcoin size={12} />
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] border border-white/[0.08] px-4 py-1.5 text-xs font-medium text-white/80 mb-6 backdrop-blur-sm">
+                  <SiBitcoin size={12} className="text-[var(--color-gold)]" />
                   Powered by Stacks & Bitcoin
                 </div>
                 <h1
-                  className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl leading-tight"
+                  className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.1]"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
-                  Launch Your Community Token on Bitcoin
+                  Launch Your{" "}
+                  <span className="gradient-text-alt">Community Token</span>{" "}
+                  on Bitcoin
                 </h1>
-                <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
+                <p className="mt-5 text-base sm:text-lg text-white/60 leading-relaxed">
                   The token launchpad and social trading hub built on Stacks.
                   Create, discover, and trade community tokens — all secured by
                   Bitcoin.
@@ -47,14 +58,14 @@ export default function Home() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
                   <Link
                     href="/launch"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--color-purple)] shadow-lg transition-all hover:shadow-xl active:scale-[0.98]"
+                    className="btn-primary inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm"
                   >
                     <Rocket size={16} />
                     Launch Token
                   </Link>
                   <Link
                     href="/explore"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-white/60 hover:bg-white/10"
+                    className="btn-outline inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm text-white/80 border-white/15 hover:border-white/30 hover:text-white hover:bg-white/[0.04]"
                   >
                     Explore Tokens
                     <ArrowRight size={16} />
@@ -74,31 +85,26 @@ export default function Home() {
       {/* ====== PARTNERS / CHAINS ====== */}
       <section className="border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-50">
-            <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)]">
-              <SiBitcoin size={20} />
-              Bitcoin
-            </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)]">
-              <Shield size={20} />
-              Stacks
-            </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)]">
-              <Zap size={20} />
-              SIP-010
-            </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)]">
-              <Bot size={20} />
-              Clarity
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
+            {[
+              { icon: SiBitcoin, label: "Bitcoin" },
+              { icon: Shield, label: "Stacks" },
+              { icon: Zap, label: "SIP-010" },
+              { icon: Bot, label: "Clarity" },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-2 text-sm font-medium text-[var(--color-text-secondary)]">
+                <Icon size={20} />
+                {label}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ====== FEATURES MARQUEE ====== */}
-      <section className="bg-[var(--color-bg-secondary)] border-b border-[var(--color-border)]">
+      <section className="border-b border-[var(--color-border)]">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-[var(--color-purple)] px-6 py-4">
+          <div className="rounded-2xl bg-gradient-to-r from-[#4C1D95] via-[#7C3AED] to-[#4C1D95] px-6 py-4 animate-gradient" style={{ backgroundSize: '200% 200%' }}>
             <p
               className="text-center text-sm sm:text-base font-semibold text-white"
               style={{ fontFamily: "var(--font-heading)" }}
@@ -110,33 +116,33 @@ export default function Home() {
       </section>
 
       {/* ====== FEATURE SECTIONS ====== */}
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <h2
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--color-text-primary)]"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-text-primary)]"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Unleashing the Power of
               <br />
-              Community Tokens
+              <span className="gradient-text-alt">Community Tokens</span>
             </h2>
-            <p className="mt-4 text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+            <p className="mt-5 text-[var(--color-text-secondary)] max-w-2xl mx-auto leading-relaxed">
               Everything you need to launch, trade, and grow a community token
               — from bonding curves to social feeds, all in one platform.
             </p>
           </div>
 
           {/* Feature 1: Launch */}
-          <div className="grid grid-cols-1 gap-12 items-center lg:grid-cols-2 mb-20">
+          <div className="grid grid-cols-1 gap-12 items-center lg:grid-cols-2 mb-24">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-purple-light)] px-3 py-1 text-xs font-semibold text-[var(--color-purple)] mb-4">
+              <div className="badge-purple inline-flex items-center gap-2 mb-5">
                 <Rocket size={12} />
                 Launch
               </div>
               <h3
-                className="text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] mb-3"
+                className="text-xl sm:text-2xl lg:text-3xl font-bold text-[var(--color-text-primary)] mb-4"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 Instant, Secure
@@ -155,17 +161,17 @@ export default function Home() {
           </div>
 
           {/* Feature 2: Trade */}
-          <div className="grid grid-cols-1 gap-12 items-center lg:grid-cols-2 mb-20">
+          <div className="grid grid-cols-1 gap-12 items-center lg:grid-cols-2 mb-24">
             <div className="order-2 lg:order-1 flex justify-center">
               <FeatureIllustration2 />
             </div>
             <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-[var(--color-green)] mb-4">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-green-dim)] px-3 py-1 text-xs font-semibold text-[var(--color-green)] mb-5">
                 <BarChart3 size={12} />
                 Trade
               </div>
               <h3
-                className="text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] mb-3"
+                className="text-xl sm:text-2xl lg:text-3xl font-bold text-[var(--color-text-primary)] mb-4"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 Multi-Token Trading &
@@ -183,12 +189,12 @@ export default function Home() {
           {/* Feature 3: Community */}
           <div className="grid grid-cols-1 gap-12 items-center lg:grid-cols-2">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-[var(--color-cyan)] mb-4">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-cyan-dim)] px-3 py-1 text-xs font-semibold text-[var(--color-cyan)] mb-5">
                 <Users size={12} />
                 Community
               </div>
               <h3
-                className="text-xl sm:text-2xl font-bold text-[var(--color-text-primary)] mb-3"
+                className="text-xl sm:text-2xl lg:text-3xl font-bold text-[var(--color-text-primary)] mb-4"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
                 Smart Community Feeds &
@@ -209,16 +215,19 @@ export default function Home() {
       </section>
 
       {/* ====== HOW IT WORKS ====== */}
-      <section className="bg-[var(--color-bg-secondary)] py-16 sm:py-24 border-y border-[var(--color-border)]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+      <section className="py-16 sm:py-28 border-y border-[var(--color-border)] relative">
+        {/* Background glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(139,92,246,0.04)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-14">
             <h2
               className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--color-text-primary)]"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               From Setup to First
               <br />
-              Token in Minutes
+              <span className="gradient-text-alt">Token in Minutes</span>
             </h2>
             <p className="mt-4 text-[var(--color-text-secondary)] max-w-xl mx-auto">
               Three simple steps to launch your community token, secured by
@@ -232,51 +241,52 @@ export default function Home() {
           </div>
 
           {/* Steps detail cards */}
-          <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-3 stagger-children">
-            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-purple-light)] text-[var(--color-purple)] font-bold text-lg">
-                1
+          <div className="grid grid-cols-1 gap-6 mt-14 sm:grid-cols-3 stagger-children">
+            {[
+              {
+                step: "1",
+                title: "Connect Your Wallet",
+                desc: "Sign in with Leather or Xverse. No passwords, no email — just your Stacks wallet.",
+                active: false,
+              },
+              {
+                step: "2",
+                title: "Design Your Token",
+                desc: "Pick a name, ticker, and bonding curve. Upload your logo and set your tokenomics.",
+                active: false,
+              },
+              {
+                step: "3",
+                title: "Launch & Grow",
+                desc: "Deploy your SIP-010 contract on-chain. Your token page goes live instantly.",
+                active: true,
+              },
+            ].map((item) => (
+              <div key={item.step} className="glass-card rounded-2xl p-6 text-center">
+                <div
+                  className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl font-bold text-lg ${item.active
+                      ? "bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white shadow-lg shadow-purple-500/20"
+                      : "bg-[var(--color-purple-light)] text-[var(--color-purple)]"
+                    }`}
+                >
+                  {item.step}
+                </div>
+                <h4 className="font-semibold text-[var(--color-text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
+                  {item.title}
+                </h4>
+                <p className="text-sm text-[var(--color-text-secondary)]">
+                  {item.desc}
+                </p>
               </div>
-              <h4 className="font-semibold text-[var(--color-text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                Connect Your Wallet
-              </h4>
-              <p className="text-sm text-[var(--color-text-secondary)]">
-                Sign in with Leather or Xverse. No passwords, no email — just
-                your Stacks wallet.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-purple-light)] text-[var(--color-purple)] font-bold text-lg">
-                2
-              </div>
-              <h4 className="font-semibold text-[var(--color-text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                Design Your Token
-              </h4>
-              <p className="text-sm text-[var(--color-text-secondary)]">
-                Pick a name, ticker, and bonding curve. Upload your logo and set
-                your tokenomics.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-purple)] text-white font-bold text-lg">
-                3
-              </div>
-              <h4 className="font-semibold text-[var(--color-text-primary)] mb-2" style={{ fontFamily: "var(--font-heading)" }}>
-                Launch & Grow
-              </h4>
-              <p className="text-sm text-[var(--color-text-secondary)]">
-                Deploy your SIP-010 contract on-chain. Your token page goes live
-                instantly.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ====== TRENDING TOKENS ====== */}
-      <section className="py-16 sm:py-24">
+      <section className="py-16 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-12">
             <div>
               <h2
                 className="text-2xl sm:text-3xl font-bold text-[var(--color-text-primary)]"
@@ -290,7 +300,7 @@ export default function Home() {
             </div>
             <Link
               href="/explore"
-              className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-[var(--color-purple)] hover:underline"
+              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-purple)] hover:text-[var(--color-purple-dark)] transition-colors"
             >
               View all <ArrowRight size={14} />
             </Link>
@@ -305,7 +315,7 @@ export default function Home() {
           <div className="mt-8 text-center sm:hidden">
             <Link
               href="/explore"
-              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--color-purple)] hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-purple)]"
             >
               View all tokens <ArrowRight size={14} />
             </Link>
@@ -314,32 +324,35 @@ export default function Home() {
       </section>
 
       {/* ====== CTA SECTION ====== */}
-      <section className="bg-[var(--color-bg-secondary)] border-t border-[var(--color-border)]">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="border-t border-[var(--color-border)] relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(139,92,246,0.08)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 relative">
           <div className="text-center">
             <h2
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--color-text-primary)] mb-4"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--color-text-primary)] mb-5"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Ready to Launch Your
               <br />
-              Community Token?
+              <span className="gradient-text-alt">Community Token?</span>
             </h2>
-            <p className="text-[var(--color-text-secondary)] max-w-xl mx-auto mb-8">
+            <p className="text-[var(--color-text-secondary)] max-w-xl mx-auto mb-10">
               Join hundreds of communities already building on Stacks. Your
               token is just a few clicks away.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Link
                 href="/launch"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-purple)] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-200 transition-all hover:bg-[var(--color-purple-dark)] hover:shadow-purple-300 active:scale-[0.98]"
+                className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-sm"
               >
                 <Rocket size={16} />
                 Get Started
               </Link>
               <Link
                 href="/explore"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--color-border)] px-8 py-3.5 text-sm font-semibold text-[var(--color-text-primary)] transition-all hover:border-[var(--color-purple)] hover:text-[var(--color-purple)]"
+                className="btn-outline inline-flex items-center justify-center gap-2 px-8 py-4 text-sm"
               >
                 Explore Tokens
                 <ArrowRight size={16} />

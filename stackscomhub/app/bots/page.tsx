@@ -14,7 +14,7 @@ export default function BotsPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-[var(--background)]">
             <Navbar />
 
             <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -31,7 +31,7 @@ export default function BotsPage() {
                             Open-source trading bots, analytics tools, and community utilities
                         </p>
                     </div>
-                    <button className="inline-flex items-center gap-2 rounded-full bg-[var(--color-purple)] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-200 transition-all hover:bg-[var(--color-purple-dark)] active:scale-[0.98]">
+                    <button className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
                         <Plus size={16} />
                         Submit Bot
                     </button>
@@ -41,23 +41,23 @@ export default function BotsPage() {
                 <div className="relative max-w-md mb-6">
                     <Search
                         size={18}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-secondary)]"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)]"
                     />
                     <input
                         type="text"
                         placeholder="Search bots..."
-                        className="w-full rounded-xl border border-[var(--color-border)] bg-white py-2.5 pl-10 pr-4 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:border-[var(--color-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--color-purple)]/20 transition-all"
+                        className="input-field w-full py-2.5 pl-10 pr-4 text-sm"
                     />
                 </div>
 
                 {/* Category tabs */}
-                <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6">
+                <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide">
                     {categories.map((cat) => (
                         <button
                             key={cat.label}
-                            className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-all ${cat.active
-                                    ? "bg-[var(--color-purple)] text-white shadow-sm"
-                                    : "border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)]"
+                            className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 ${cat.active
+                                    ? "btn-primary shadow-sm"
+                                    : "btn-outline"
                                 }`}
                         >
                             <cat.icon size={12} />

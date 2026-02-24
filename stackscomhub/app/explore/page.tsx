@@ -6,7 +6,7 @@ import { Search, SlidersHorizontal, TrendingUp, Clock, Users } from "lucide-reac
 
 export default function ExplorePage() {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-[var(--background)]">
             <Navbar />
 
             <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -28,16 +28,16 @@ export default function ExplorePage() {
                     <div className="relative flex-1 max-w-md">
                         <Search
                             size={18}
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-secondary)]"
+                            className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)]"
                         />
                         <input
                             type="text"
                             placeholder="Search tokens by name or ticker..."
-                            className="w-full rounded-xl border border-[var(--color-border)] bg-white py-2.5 pl-10 pr-4 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:border-[var(--color-purple)] focus:outline-none focus:ring-2 focus:ring-[var(--color-purple)]/20 transition-all"
+                            className="input-field w-full py-2.5 pl-10 pr-4 text-sm"
                         />
                     </div>
                     <div className="flex items-center gap-2">
-                        <button className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] transition-all">
+                        <button className="btn-outline inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl">
                             <SlidersHorizontal size={14} />
                             Filters
                         </button>
@@ -46,24 +46,24 @@ export default function ExplorePage() {
 
                 {/* Category tabs */}
                 <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-hide">
-                    <button className="flex items-center gap-1.5 whitespace-nowrap rounded-full bg-[var(--color-purple)] px-4 py-2 text-xs font-semibold text-white shadow-sm">
-                        <TrendingUp size={12} />
-                        Trending
-                    </button>
-                    <button className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-xs font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] transition-all">
-                        <Clock size={12} />
-                        New Launches
-                    </button>
-                    <button className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-xs font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] transition-all">
-                        <Users size={12} />
-                        Most Holders
-                    </button>
-                    <button className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-xs font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] transition-all">
-                        Top Gainers
-                    </button>
-                    <button className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-xs font-medium text-[var(--color-text-secondary)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] transition-all">
-                        Top Losers
-                    </button>
+                    {[
+                        { label: "Trending", icon: TrendingUp, active: true },
+                        { label: "New Launches", icon: Clock, active: false },
+                        { label: "Most Holders", icon: Users, active: false },
+                        { label: "Top Gainers", icon: null, active: false },
+                        { label: "Top Losers", icon: null, active: false },
+                    ].map((tab) => (
+                        <button
+                            key={tab.label}
+                            className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 ${tab.active
+                                    ? "btn-primary shadow-sm"
+                                    : "btn-outline"
+                                }`}
+                        >
+                            {tab.icon && <tab.icon size={12} />}
+                            {tab.label}
+                        </button>
+                    ))}
                 </div>
 
                 {/* Token grid */}
@@ -74,8 +74,8 @@ export default function ExplorePage() {
                 </div>
 
                 {/* Load more */}
-                <div className="mt-10 text-center">
-                    <button className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-medium text-[var(--color-text-secondary)] transition-all hover:border-[var(--color-purple)] hover:text-[var(--color-purple)]">
+                <div className="mt-12 text-center">
+                    <button className="btn-outline inline-flex items-center gap-2 px-6 py-3 text-sm font-medium">
                         Load more tokens
                     </button>
                 </div>
