@@ -4,47 +4,47 @@ import { Sparkles } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="relative border-t border-[var(--color-border)] bg-[rgba(8,8,26,0.8)]">
-            {/* Top glow line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[var(--color-purple)]/30 to-transparent" />
+        <footer className="relative border-t border-[rgba(255,255,255,0.05)] bg-[rgba(3,3,10,0.8)] backdrop-blur-xl mt-auto">
+            {/* Top ambient glow line */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[rgba(157,78,221,0.3)] to-transparent" />
 
-            <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
                     {/* Brand */}
-                    <div>
-                        <div className="flex items-center gap-2.5 mb-5">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-white font-bold text-sm shadow-lg shadow-purple-500/20">
-                                <Sparkles size={16} />
+                    <div className="flex flex-col items-start lg:col-span-1">
+                        <div className="flex items-center gap-3 mb-6 group outline-none">
+                            <div className="relative flex h-10 w-10 items-center justify-center rounded-[0.8rem] bg-gradient-to-br from-[#9D4EDD] to-[#00BBF9] text-white shadow-[0_0_20px_rgba(157,78,221,0.3)] transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(0,187,249,0.5)] group-hover:scale-105">
+                                <Sparkles size={18} strokeWidth={2.5} className="drop-shadow-md" />
+                                <div className="absolute inset-0 rounded-[0.8rem] bg-gradient-to-br from-white/20 to-transparent" />
                             </div>
                             <span
-                                className="text-lg font-bold text-[var(--color-text-primary)]"
+                                className="text-[22px] font-bold tracking-tight text-white transition-colors group-hover:text-[#00BBF9]"
                                 style={{ fontFamily: "var(--font-heading)" }}
                             >
                                 Pegged
                             </span>
                         </div>
-                        <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed max-w-xs">
-                            The community token launchpad and social trading hub built on
-                            Stacks, secured by Bitcoin.
+                        <p className="text-[14px] text-[var(--color-text-secondary)] leading-relaxed font-light max-w-xs">
+                            The ultimate launchpad and liquidity layer for community assets on Stacks, natively secured by Bitcoin.
                         </p>
                     </div>
 
                     {/* Product */}
                     <div>
-                        <h4 className="text-sm font-semibold mb-5 text-[var(--color-text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
-                            Product
+                        <h4 className="text-[14px] font-bold mb-6 text-white tracking-wider uppercase" style={{ fontFamily: "var(--font-heading)" }}>
+                            Ecosystem
                         </h4>
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                             {[
-                                { href: "/explore", label: "Explore Tokens" },
-                                { href: "/launch", label: "Launch Token" },
-                                { href: "/bots", label: "Bot Hub" },
-                                { href: "/dashboard", label: "Dashboard" },
+                                { href: "/explore", label: "Analyze Markets" },
+                                { href: "/launch", label: "Deploy Token" },
+                                { href: "/bots", label: "Trading Algorithms" },
+                                { href: "/dashboard", label: "Portfolio" },
                             ].map((link) => (
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-purple)] transition-colors duration-300"
+                                        className="text-[14.5px] font-medium text-[var(--color-text-secondary)] hover:text-[#00BBF9] transition-colors duration-300"
                                     >
                                         {link.label}
                                     </Link>
@@ -55,15 +55,15 @@ export default function Footer() {
 
                     {/* Resources */}
                     <div>
-                        <h4 className="text-sm font-semibold mb-5 text-[var(--color-text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
-                            Resources
+                        <h4 className="text-[14px] font-bold mb-6 text-white tracking-wider uppercase" style={{ fontFamily: "var(--font-heading)" }}>
+                            Developers
                         </h4>
-                        <ul className="space-y-3">
-                            {["Documentation", "API Reference", "Clarity Contracts", "Community"].map((label) => (
+                        <ul className="space-y-4">
+                            {["Protocol Docs", "API Reference", "Clarity Hub", "Audits"].map((label) => (
                                 <li key={label}>
                                     <a
                                         href="#"
-                                        className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-purple)] transition-colors duration-300"
+                                        className="text-[14.5px] font-medium text-[var(--color-text-secondary)] hover:text-[#9D4EDD] transition-colors duration-300"
                                     >
                                         {label}
                                     </a>
@@ -74,23 +74,23 @@ export default function Footer() {
 
                     {/* Socials */}
                     <div>
-                        <h4 className="text-sm font-semibold mb-5 text-[var(--color-text-primary)]" style={{ fontFamily: "var(--font-heading)" }}>
-                            Community
+                        <h4 className="text-[14px] font-bold mb-6 text-white tracking-wider uppercase" style={{ fontFamily: "var(--font-heading)" }}>
+                            Network
                         </h4>
-                        <div className="flex gap-2.5">
+                        <div className="flex flex-wrap gap-3">
                             {[
-                                { icon: FaTwitter, label: "Twitter" },
-                                { icon: FaTelegram, label: "Telegram" },
-                                { icon: FaDiscord, label: "Discord" },
-                                { icon: FaGithub, label: "GitHub" },
-                            ].map(({ icon: Icon, label }) => (
+                                { icon: FaTwitter, label: "Twitter", color: "hover:text-[#1DA1F2]" },
+                                { icon: FaTelegram, label: "Telegram", color: "hover:text-[#26A5E4]" },
+                                { icon: FaDiscord, label: "Discord", color: "hover:text-[#5865F2]" },
+                                { icon: FaGithub, label: "GitHub", color: "hover:text-white" },
+                            ].map(({ icon: Icon, label, color }) => (
                                 <a
                                     key={label}
                                     href="#"
                                     aria-label={label}
-                                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-[var(--color-border)] text-[var(--color-text-secondary)] transition-all duration-300 hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] hover:bg-[var(--color-purple-light)] hover:shadow-lg hover:shadow-purple-500/10"
+                                    className={`flex h-11 w-11 items-center justify-center rounded-[0.85rem] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] text-[var(--color-text-secondary)] transition-all duration-300 hover:bg-[rgba(255,255,255,0.08)] hover:scale-110 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(0,0,0,0.3)] ${color}`}
                                 >
-                                    <Icon size={16} />
+                                    <Icon size={18} />
                                 </a>
                             ))}
                         </div>
@@ -98,16 +98,16 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom bar */}
-                <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-border)] pt-8 sm:flex-row">
-                    <p className="text-xs text-[var(--color-text-tertiary)]">
-                        © 2026 Pegged. Built on Stacks, secured by Bitcoin.
+                <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-[rgba(255,255,255,0.05)] pt-8 sm:flex-row">
+                    <p className="text-[13px] font-light text-[var(--color-text-tertiary)]">
+                        © 2026 Pegged Protocol. <span className="hidden sm:inline">|</span> Unstoppable community primitive.
                     </p>
-                    <div className="flex gap-5">
-                        {["Terms", "Privacy", "Cookie Policy"].map((label) => (
+                    <div className="flex gap-6">
+                        {["Terms", "Privacy", "Security"].map((label) => (
                             <a
                                 key={label}
                                 href="#"
-                                className="text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-purple)] transition-colors duration-300"
+                                className="text-[13px] font-medium text-[var(--color-text-secondary)] hover:text-white transition-colors duration-300"
                             >
                                 {label}
                             </a>
