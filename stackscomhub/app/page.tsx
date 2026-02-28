@@ -12,57 +12,56 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white selection:bg-fuchsia-500/30">
       <Navbar />
 
-      {/* ====== ULTRA MINIMAL HERO ====== */}
-      <section className="relative overflow-hidden pt-20 pb-32 lg:pt-32 lg:pb-40">
-        {/* Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] opacity-20 bg-gradient-to-b from-blue-600 via-emerald-500 to-transparent blur-[100px] pointer-events-none" />
+      {/* ====== REPLICATED "WIDE" HERO ====== */}
+      <section className="relative overflow-hidden min-h-[95vh] flex flex-col items-center justify-center bg-[#050505] -mt-20 pt-20">
+        {/* Glow effect at the bottom */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[80%] pointer-events-none flex justify-center items-end">
+          {/* Intense center glow */}
+          <div className="absolute bottom-[-30%] left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] h-[100%] rounded-[100%] bg-gradient-to-t from-emerald-200/90 via-emerald-400/40 to-transparent blur-[120px] sm:blur-[160px]" />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-5 py-2 text-sm md:text-md text-zinc-300 md:mb-12 mb-8 backdrop-blur-md shadow-[0_0_30px_-5px_rgba(59,130,246,0.15)] transition-all hover:bg-blue-500/10 hover:border-blue-500/30 hover:scale-105 cursor-pointer">
-            <Sparkles size={16} className="text-emerald-400 animate-pulse" />
-            <span className="font-medium tracking-wide">Introducing Protocol V2</span>
-            <ChevronRight size={16} className="text-emerald-500/70" />
-          </div>
+          {/* Subtle rays overlay */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[150%] bg-[conic-gradient(from_0deg_at_50%_100%,transparent_0deg,rgba(110,231,183,0.15)_15deg,transparent_30deg,transparent_330deg,rgba(110,231,183,0.15)_345deg,transparent_360deg)] opacity-80" />
 
-          <h1
-            className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.1] tracking-tighter mx-auto max-w-5xl drop-shadow-2xl"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            The Operating System for <br className="hidden lg:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-teal-300 to-emerald-400 animate-gradient-x">
-              Community Capital.
-            </span>
-          </h1>
-
-          <p className="mt-8 text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
-            Deploy hyper-liquid tokens on Bitcoin. Zero code. Instant markets.
-            The premier launchpad where social engagement meets absolute financial utility.
-          </p>
-
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link
-              href="/launch"
-              className="group w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 text-white px-8 py-4 text-sm font-semibold transition-all hover:scale-[1.02] shadow-[0_0_40px_-10px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_-15px_rgba(16,185,129,0.5)]"
-            >
-              Start Building
-              <Rocket size={16} className="text-white transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </Link>
-            <Link
-              href="/explore"
-              className="group w-full sm:w-auto flex items-center justify-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/50 hover:bg-zinc-800/80 px-8 py-4 text-sm font-semibold text-zinc-300 backdrop-blur-sm transition-all hover:border-zinc-500"
-            >
-              Explore Markets
-              <ArrowRight size={16} className="text-zinc-500 transition-transform group-hover:translate-x-1" />
-            </Link>
+          {/* Geometric segmented transparent fan shapes */}
+          <div className="absolute bottom-[-5%] w-full max-w-6xl aspect-[2/1] flex justify-center items-end opacity-90 overflow-hidden">
+            {/* Creating layers of arcs using CSS */}
+            <div className="absolute bottom-[-10%] w-[45%] h-[80%] rounded-t-[100%] border border-emerald-100/40 bg-gradient-to-t from-emerald-900/10 to-emerald-300/30 backdrop-blur-sm shadow-[0_0_60px_-15px_rgba(52,211,153,0.5)]"></div>
+            <div className="absolute bottom-[-15%] w-[65%] h-[95%] rounded-t-[100%] border border-emerald-100/20 bg-gradient-to-t from-emerald-900/10 to-emerald-400/15 backdrop-blur-[2px] -z-10"></div>
+            <div className="absolute bottom-[-20%] w-[85%] h-[110%] rounded-t-[100%] border border-emerald-100/10 bg-gradient-to-t from-emerald-900/10 to-emerald-500/10 -z-20"></div>
+            <div className="absolute bottom-[-25%] w-[105%] h-[125%] rounded-t-[100%] border border-emerald-100/5 bg-gradient-to-t from-emerald-900/10 to-emerald-500/5 -z-30"></div>
           </div>
         </div>
 
-        {/* Hero Illustration / Dashboard Preview */}
-        <div className="mt-20 mx-auto max-w-6xl px-4 sm:px-6 relative z-10 perspective-1000">
-          <div className="rounded-2xl border border-blue-500/10 bg-black/50 p-2 backdrop-blur-3xl shadow-[0_0_80px_-20px_rgba(16,185,129,0.15)] transform-gpu hover:-translate-y-2 transition-transform duration-700">
-            <div className="rounded-xl overflow-hidden relative bg-zinc-950 aspect-[16/9] flex items-center justify-center border border-white/5">
-              <HeroIllustration />
-            </div>
+        {/* Stars/noise overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:50px_50px] opacity-40 pointer-events-none" />
+
+        <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center -mt-32">
+          <p className="text-[#a1a1aa] text-lg sm:text-[22px] font-medium tracking-[0.02em] mx-auto max-w-3xl mb-8 sm:mb-12 font-sans leading-relaxed drop-shadow-lg">
+            Welcome to bridgeless hub for layered assets <br className="hidden md:block" />
+            built on Bitcoin and other blockchains
+          </p>
+
+          <h1
+            className="text-[6rem] xs:text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[22rem] font-extrabold leading-[0.8] tracking-tighter mx-auto select-none"
+            style={{
+              fontFamily: 'var(--font-heading), sans-serif',
+              background: 'linear-gradient(170deg, #ffffff 15%, #c4c4cc 45%, #52525b 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0px 30px 50px rgba(0,0,0,0.6)) drop-shadow(0px 0px 20px rgba(255,255,255,0.1))'
+            }}
+          >
+            pegged
+          </h1>
+        </div>
+
+        {/* Bottom circles mimicking the reference left corner */}
+        <div className="absolute bottom-8 left-8 flex gap-4 z-20">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center transform hover:scale-105 transition-transform cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+            <span className="text-black font-bold text-xl sm:text-2xl rotate-45 border-black border-r-2 border-t-2 w-3 h-3 sm:w-4 sm:h-4 translate-y-0.5 -translate-x-0.5"></span>
+          </div>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/5 backdrop-blur-xl border border-white/20 flex items-center justify-center transform hover:scale-105 transition-transform cursor-pointer">
+            <span className="text-white text-lg sm:text-xl font-bold">1</span>
           </div>
         </div>
       </section>
