@@ -56,7 +56,7 @@ export default function TokenCard({ token }: { token: Token }) {
                 background: `linear-gradient(135deg, ${token.color}60, transparent, ${token.color}20)`
             }} />
 
-            <div className="relative overflow-hidden rounded-2xl glass-card p-5 h-full transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-[rgba(20,20,35,0.7)] group-focus-visible:ring-2 group-focus-visible:ring-[var(--color-purple)]">
+            <div className="relative overflow-hidden rounded-2xl glass-card p-5 h-full transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-[rgba(20,20,35,0.7)] group-focus-visible:ring-2 group-focus-visible:ring-[var(--color-primary)]">
 
                 {/* Ambient radial glow top-right corner */}
                 <div

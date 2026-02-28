@@ -4,46 +4,24 @@
 /*  DESIGN TOKENS                               */
 /* ============================================ */
 :root {
-  /* Hyper-premium deep dark background */
-  --background: #03030A;
-  --foreground: #FFFFFF;
+  --background: #000000;
+  --foreground: #ffffff;
 
-  /* Refined, electrifying brand palette */
-  --color-purple: #9D4EDD;
-  --color-purple-light: rgba(157, 78, 221, 0.12);
-  --color-purple-dark: #5A189A;
-  --color-purple-glow: rgba(157, 78, 221, 0.5);
-
-  /* Vibrant accents */
-  --color-green: #00F5D4;
-  --color-green-dim: rgba(0, 245, 212, 0.12);
-  --color-red: #F15BB5;
-  --color-red-dim: rgba(241, 91, 181, 0.12);
-  --color-orange: #FEE440;
-  --color-orange-dim: rgba(254, 228, 64, 0.12);
-  --color-cyan: #00BBF9;
-  --color-cyan-dim: rgba(0, 187, 249, 0.12);
-  --color-gold: #FFB703;
-
-  /* Surfaces - extremely clean and subtle glass */
-  --color-card: rgba(10, 10, 20, 0.4);
-  --color-card-hover: rgba(15, 15, 30, 0.6);
-  --color-card-solid: #0A0A14;
-  --color-border: rgba(255, 255, 255, 0.06);
-  --color-border-hover: rgba(255, 255, 255, 0.15);
+  /* Premium palette */
+  --color-primary: #D946EF;
+  --color-secondary: #6366F1;
+  --color-accent: #14B8A6;
 
   /* Text hierarchy */
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: #A0A0B0;
-  --color-text-tertiary: #606070;
+  --color-text-secondary: #A1A1AA;
+  --color-text-tertiary: #52525B;
 
-  /* Background elements */
-  --color-bg-secondary: rgba(5, 5, 15, 0.6);
-  --color-bg-input: rgba(10, 10, 20, 0.6);
-
-  /* High-end Glassmorphism */
-  --color-glass: rgba(10, 10, 15, 0.45);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
+  /* Surfaces */
+  --color-card: rgba(15, 15, 20, 0.4);
+  --color-card-hover: rgba(25, 25, 30, 0.6);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
 
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -63,6 +41,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background: var(--background);
 }
 
 body {
@@ -75,33 +54,36 @@ body {
   min-height: 100vh;
 }
 
-/* Stunning animated layered mesh gradient background */
+/* Luxury mesh background */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-color: var(--background);
+  background-color: #000;
   background-image:
-    radial-gradient(ellipse at 10% 0%, rgba(90, 24, 154, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 90% 10%, rgba(0, 187, 249, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(157, 78, 221, 0.1) 0%, transparent 60%);
-  filter: blur(40px);
-  animation: bg-shift 20s ease-in-out infinite alternate;
+    radial-gradient(circle at 15% 15%, rgba(217, 70, 239, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.05) 0%, transparent 60%);
+  filter: blur(50px);
+  animation: bg-pulse 15s ease-in-out infinite alternate;
 }
 
-@keyframes bg-shift {
+@keyframes bg-pulse {
   0% {
-    transform: scale(1) translate(0, 0);
+    transform: scale(1);
+    opacity: 0.8;
   }
 
   50% {
-    transform: scale(1.1) translate(2%, 2%);
+    transform: scale(1.05);
+    opacity: 1;
   }
 
   100% {
-    transform: scale(1) translate(-2%, -2%);
+    transform: scale(1);
+    opacity: 0.8;
   }
 }
 
